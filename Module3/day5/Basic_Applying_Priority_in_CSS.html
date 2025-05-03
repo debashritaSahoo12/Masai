@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            color: red; /*Specificity: 1*/
+        }
+        .highlight{
+            color: yellow;  /*Specificity: 10*/
+        }
+        #special{
+            color: green;  /*Specificity: 100*/
+        }
+    </style>
+</head>
+<body>
+    <div class="highlight" id="special">Priority</div>
+</body>
+</html>
