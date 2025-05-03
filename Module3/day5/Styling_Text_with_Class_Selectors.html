@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styling Text with Class Selectors</title>
+    <style>
+        p{
+            font-size: 16px;
+        }
+      .highlight {
+        background-color: yellow;
+        font-weight: bold;
+      }
+      .note {
+        font-style: italic;
+        color: darkgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="highlight">
+      Assign a class of highlight to the first paragraph and style it with a
+      yellow background color and bold text
+    </p>
+    <p class="note">
+      Assign a class of note to the second paragraph and style it with italic
+      text and a font color of dark green.
+    </p>
+    <p>
+      Leave the third paragraph without a class and apply a default style in CSS
+      to make all paragraphs have a font size of 16px.
+    </p>
+  </body>
+</html>
