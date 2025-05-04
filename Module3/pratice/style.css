@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 10px;
+    margin: 10px;
+    font-family:"Open Sans", sans-serif ;
+    background:linear-gradient(rgb(252, 180, 192),rgb(244, 189, 87),rgb(217, 88, 88));
+}
+a{
+    color: rgb(32, 35, 235);
+    text-align: center;
+    margin-left: 10px;
+    text-decoration: none;
+}
+#heading{
+    color: rgb(118, 20, 150);
+}
+.short{
+    color: red;
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  </head>
+<style>
+    button{
+        background-color: rgb(118, 118, 245);
+        border: none;
+        width: 60px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    button::after{
+        color: yellow;
+    }
+    button:hover{
+        cursor: pointer;
+    }
+</style>
+  <body>
+    <header>
+      <h1 id="heading">Client & Server <span class="material-symbols-outlined">
+desktop_mac
+</span></h1>
+      <hr />
+      <nav>
+        <a href="#about">About</a>
+        <a href="#client">Client</a>
+        <a href="#server">Server</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div>
+      <section>
+        <article>
+          <h2>Client & Server communication.</h2>
+          <p>
+            In an Operating System, Client Server Communication refers to the
+            exchange of data and Services among multiple machines or processes.
+            In Client client-server communication System one process or machine
+            acts as a client requesting a service or data, and Another machine
+            or process acts like a server for providing those Services or Data
+            to the client machine. This Communication model is widely used for
+            exchanging data among various computing environments like
+            <b
+              >Distributed Systems, Internet Applications, and Networking
+              Application communication</b
+            >. The communication between Server and Client takes place with
+            different Protocols and mechanisms.
+          </p>
+        </article>
+        <article>
+          <h3>Different Ways of Client-Server Communication</h3>
+          <h4>In Client Server Communication we can use different ways.</h4>
+          <ol>
+            <li>Sockets Mechanism</li>
+            <li>Remote Procedure Call</li>
+            <li>Message Passing</li>
+            <li>Inter-process Communication</li>
+            <li>Distributed File Systems</li>
+          </ol>
+        </article>
+        <article>
+          <h3>The Journey of a Web Request</h3>
+          <h5><i>from browser to server</i></h5>
+          <p>
+            In the vast expanse of the internet, every click, every search, and
+            every interaction we make through our browsers initiates a journey —
+            a complex journey that spans across various technologies, protocols,
+            and infrastructures before arriving at its destination and back.
+            This article is a deep dive into the odyssey of a web request from
+            the moment you hit enter on your browser to when it reaches the
+            systems and returns with the information or service you sought. Grab
+            your digital explorer gear, we’re tracing the path of a web request
+            using debuggers and dissecting the components it encounters along
+            the way.
+          </p>
+          <aside>
+            <h6 class="short"><u>Important:</u></h6>
+            <p>
+              Web requests are essential to how the World Wide Web works, as
+              they enable clients to retrieve and display web content from
+              servers worldwide. Web requests are typically made using HTTP, but
+              other protocols, such as HTTPS (Hypertext Transfer Protocol
+              Secure), can also be used for more secure communications.
+            </p>
+          </aside>
+        </article>
+        <article>
+          <h3>Steps of how a web request works</h3>
+          <ol>
+            <li>
+              Use GeoIP or some similar database or service which maps IPs to
+              physical locations
+            </li>
+            <li>
+              Use the W3C geolocation api (supported by newer browsers only)
+            </li>
+            <li>Google gears geolocation</li>
+          </ol>
+        </article>
+        <article>
+          <h3>Key terms</h3>
+          <ul>
+            <li>DNS Request:</li>
+            <p>
+              When you type https://www.google.com into your browser, the first
+              step is to translate the human-readable domain name
+              (www.google.com) into an IP address. This translation is performed
+              by the Domain Name System (DNS). Your computer sends a DNS request
+              to a DNS server, which then resolves the domain name to the
+              corresponding IP address (such as 172.217.3.196 for Google).
+            </p>
+            <li>TCP/IP</li>
+            <p>
+              Once the IP address is obtained, your computer establishes a
+              connection to the destination server using the Transmission
+              Control Protocol (TCP) and the Internet Protocol (IP). TCP ensures
+              reliable communication by breaking data into packets and
+              reassembling them at the destination, while IP handles routing and
+              addressing.
+            </p>
+            <li>HTTPS/SSL:</li>
+            <p>
+              If the destination server supports HTTPS (Hypertext Transfer
+              Protocol Secure), your browser initiates a secure connection using
+              SSL/TLS (Secure Sockets Layer/Transport Layer Security)
+              encryption. This ensures that the data transmitted between your
+              browser and the server is encrypted and cannot be intercepted by
+              third parties.
+            </p>
+          </ul>
+        </article>
+        <article>
+          <h3>Client vs Server:</h3>
+          <table>
+            <tr>
+              <th>function</th>
+              <th>Client</th>
+              <th>Server</th>
+            </tr>
+            <tr>
+              <th>Purpose and Function</th>
+              <td>
+                Since the server creates the services that the clients ask for,
+                clients remain dependent on the server. Clients can make a
+                different type of request and depend on servers’ response.
+              </td>
+              <td>
+                Depending on the requirements of the clients, it provides
+                services as per the client requests. The server also authorizes
+                the requests of the client and renders required services.
+              </td>
+            </tr>
+            <tr>
+              <th>User-interface</th>
+              <td>
+                Client operating systems contain a Graphical User Interface,
+                which is easier for the users to navigate.
+              </td>
+              <td>
+                In server operating systems, condensed GUI or CLI is generally
+                seen in server-side operating systems
+              </td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td>Clients can be any of the user-side devices</td>
+              <td>Servers are usually present in the data centers.</td>
+            </tr>
+          </table>
+          <table>
+            <h3>Static vs Dynamic Websites:</h3>
+            <tr>
+              <th>features</th>
+              <th>Static</th>
+              <th>Dynamic</th>
+            </tr>
+            <tr>
+              <th>Content</th>
+              <td>Remains fixed</td>
+              <td>Can change based on user input or real-time data</td>
+            </tr>
+            <tr>
+              <th>Development</th>
+              <td>Typically simpler</td>
+              <td>
+                More complex, requiring server-side scripting and databases
+              </td>
+            </tr>
+            <tr>
+              <th>Performance</th>
+              <td>Generally faster</td>
+              <td>
+                Can be slower, especially with complex interactions or large
+                databases
+              </td>
+            </tr>
+          </table>
+        </article>
+        <article>
+          <h3>illustrative diagram</h3>
+          <h4>how the client and server interact:</h4>
+          <img
+            src="https://images.wondershare.com/edrawmax/templates/network-diagram-for-client-server.png"
+            alt="client and server interact image"
+            width="400px"
+          />
+          <h3>explaining web communication:</h3>
+          <iframe
+            width="500"
+            height="280"
+            src="https://www.youtube.com/embed/YtxLexm-9pI?si=XsVRHD8W_hIWOm_u"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <h3>Location of major internet data centers:</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119730.43890980091!2d85.66412669726562!3d20.3178011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19090155555555%3A0x1b42ee30722c680!2sOrtel%20Communications%20Ltd.!5e0!3m2!1sen!2sin!4v1746368109977!5m2!1sen!2sin"
+            width="400"
+            height="250"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </article>
+        <form>
+            <label for=""> What is a client?</label><br>
+            <input type="radio" name="name">
+            <label for="">A device that provides services to other devices on a network</label><br>
+            <input type="radio" name="name">
+            <label for="">A computer that can store large amounts of data</label><br>
+            <input type="radio" name="name">
+            <label for="">A computer or software application that requests services from a server. 
+</label><br>
+            <input type="radio" name="name">
+            <label for="">A type of operating system that runs on servers</label><br><br>
+            <button type="submit">Submit</button><br><br>
+        </form>
+      </section>
+    </div>
+
+    <footer style="text-align: center;">©2025 my website</footer>
+  </body>
+</html>
