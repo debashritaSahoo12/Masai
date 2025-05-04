@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Navigation Bar</title>
+    <style>
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            background: #3db2bf;
+        }
+        .section {
+            padding: 10px;
+        }
+        .section h2 {
+            color: white;
+        }
+        .section-1 a {
+            color: rgb(92, 7, 158);
+        }
+        .section-2 a {
+            color: blue;
+        }
+        .section-3 a {
+            color: green;
+        }
+        .section > a {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .section .nested a {
+            color: rgb(206, 5, 5);
+        }
+
+   
+        a[href^="https"] {
+            color: rgb(2, 2, 0) !important;
+            font-weight: bold;
+        }
+
+
+        a:hover {
+            color: rgb(220, 220, 220);
+        }
+        a:active {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="section section-1">
+        <h2>Section 1</h2>
+        <a href="https://example.com">External Link</a>
+        <a href="/internal">Internal Link</a>
+        <div class="nested">
+            <a href="/nested1">Nested Link 1</a>
+        </div>
+    </div>
+    
+    <div class="section section-2">
+        <h2>Section 2</h2>
+        <a href="https://secure-site.com">Secure External</a>
+        <a href="/local-page">Local Page</a>
+        <div class="nested">
+            <a href="/deep-link1">Deep Link 1</a>
+        </div>
+    </div>
+    
+    <div class="section section-3">
+        <h2>Section 3</h2>
+        <a href="https://third-party.com">Third-Party</a>
+        <a href="/page">Another Page</a>
+        <div class="nested">
+            <a href="/sub-link1">Sub Link 1</a>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
