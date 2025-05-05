@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: linear-gradient(rgb(250, 146, 164),rgb(243, 179, 60),rgb(232, 85, 85));
+text-align: center;
+}
+nav,h2{
+    background-color: rgb(255, 94, 0);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+nav h1{
+    text-align: center;  
+     padding-bottom: 10px;
+}
+h1::after{
+    content: "**";
+    color: pink;
+}
+h1::before{
+    content: "**";
+    color: pink;
+}
+h1~a{
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+.head{
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+}
+#anime{
+    animation: typing 1s steps(30) infinite alternate;
+}
+ @keyframes typing{
+    from {width: 80%;}
+    to {width: 100%;}
+ }
+.head img{
+    width: 150px;
+    height: 140px;
+    border-radius: 5px;
+}
+.head div{
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    line-height: 30px;
+}
+p~span{
+    animation: 3s linear 1s infinite alternate slide-in;
+}
+p~span:hover{
+cursor: pointer;
+color: red;
+}
+
+h2+.project{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+}
+.project h3,.project p,.project img{
+    padding-bottom: 20px;
+    padding-left: 40px;
+}
+h3+img{
+    width: 200px;
+    height: 150px;
+}
+
+button{
+    color: white;
+    background-color: rgb(244, 102, 13);
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: red;
+}
+.tables{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    
+}
+h2{
+    text-align: center;
+}
+section table{
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    border-collapse: collapse;
+}
+h2+table th,h2+table td{
+    padding: 15px;
+    border: 1px  solid rgb(10, 5, 5);
+}
+input:focus{
+    background-color: yellow;
+}
+form{
+    padding: 10px;
+    margin: 10px;
+}
+footer{
+    padding: 10px;
+    margin: 10px;
+    color: blue;
+}
