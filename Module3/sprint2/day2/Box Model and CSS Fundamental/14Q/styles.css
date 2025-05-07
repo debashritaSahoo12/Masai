@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+h1{
+    padding: 20px;
+}
+.box {
+    width: 100px;
+    height: 100px;
+    background: lightblue;
+    border: 1px solid black;
+    margin: 10px;
+    position: relative;
+}
+
+.text {
+    position: fixed;
+    left: 50%;
+    top: 0;
+}

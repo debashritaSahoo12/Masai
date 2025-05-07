@@ -1,0 +1,14 @@
+header{
+    background-color: rgb(246, 191, 11);
+    position: sticky;
+    top: 0;
+    border: 2px solid black;
+}
+footer{
+    background-color: rgb(229, 167, 33);
+    position: fixed;
+    bottom: 0;
+    border: 2px solid black;
+    padding: 5px;
+    right: 0;
+}
