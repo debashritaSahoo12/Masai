@@ -1,0 +1,25 @@
+body {
+  background-color: cadetblue;
+}
+.container {
+    width: 1000px;
+  background-color: rgb(53, 63, 63);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+  color: cadetblue;
+  padding: 10px;
+}
+.container div {
+background-color: rgb(30, 48, 48);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+#enter, .shift{
+    grid-column: span 2;
+}
+#space{
+    grid-column: span 4;
+}

@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    margin: 10px;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header img{
+    width: 100%;
+}
+.investor{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+.investor div{
+    text-align: center;
+}
+.investor>img{
+    width: 90%;
+}
+.investor h2,.investor p{
+    font-size: 20px;
+}
+
+.investor img:nth-of-type(2){
+    width: 200px;
+    height: 150px;
+}
+.container h2{
+    text-align: center;
+    margin: 15px;
+}
+

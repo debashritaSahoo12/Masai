@@ -1,0 +1,26 @@
+.container{
+    background-color: rgb(162, 95, 225);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    padding: 10px;
+}
+.container div{
+    border: 1px solid rgb(1, 1, 1);
+    padding: 10px;
+
+}
+.container :nth-of-type(2){
+    grid-row: span 2;
+    background-color:rgb(236, 178, 188) ;
+}
+.container :nth-of-type(1){
+    grid-column: span 2;
+    background-color: orangered;
+}
+.container :nth-of-type(3){
+    background-color: rgb(20, 16, 236);
+}
+.container :nth-of-type(4){
+    background-color: rgb(86, 55, 42);
+}
