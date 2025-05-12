@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: "Open Sans", sans-serif;;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+}
+nav a{
+    color: black;
+    text-decoration: none;
+    justify-content: space-evenly;
+}
+
+nav>img{
+    width: 200px;
+}
+nav img:nth-of-type(2){
+    width: 70px;
+}
+nav input{
+    padding: 5px;
+    border: none;
+}
+nav button{
+    background-color:#C40C2F;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+header img,.main img{
+    width: 97%;
+   padding: 15px;
+}
+.main h2{
+    padding: 10px;
+    margin-left: 60px;
+}
+.card{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    gap: 30px;
+    justify-content: center;
+}
+.main{
+    padding: 10px;
+}
+.shop h2{
+    font-weight: 500;
+    font-size: 32px;
+}
+.shopH{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    justify-content: space-evenly;
+    font-size: 20px;
+    align-items: end;
+}
+.shopH h3{
+font-size: 40px;
+}
+.running {
+display: grid;
+grid-template-columns: repeat(4,1fr);
+gap: 20px;
+padding: 10px;
+margin: 10px;
+}
+.shopping{
+margin: 10px;
+padding: 10px;
+}
+.shopping h2{
+font-size: 35px;
+}
+.explore div{
+display: grid;
+grid-template-columns: repeat(4,1fr);
+padding: 10px;
+margin: 10px;
+gap: 15px;
+}
+.recommend{
+    margin: 10px;
+    padding: 10px;
+}
+.recom{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+footer{
+    background-color: #0C2340;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer p{
+    color: white;
+    padding: 15px;
+    margin: 10px;
+}
+footer p:hover{
+    cursor: pointer;
+}
