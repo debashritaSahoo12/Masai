@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <input id="taskInput" type="text" placeholder="Enter task">
+    <button id="addTask">Add Task</button>
+    <button id="sortTasks">Sort Tasks</button>
+    <div id="filterButtons">
+        <button id="allTasks">All Tasks</button>
+        <button id="completedTasks">Completed Tasks</button>
+        <button id="incompleteTasks">Incomplete Tasks</button>
+    </div>
+    <ul id="taskList"></ul>
+    <div id="taskCount">
+        Total Tasks: <span id="totalTasks">0</span>
+        Completed Tasks: <span id="completedTaskCount">0</span>
+        Incomplete Tasks: <span id="incompleteTaskCount">0</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

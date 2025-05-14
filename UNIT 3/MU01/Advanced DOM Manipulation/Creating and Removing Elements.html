@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="add">ADD</button>
+    <button id="delete">DELETE</button>
+    <div class="container">
+
+    </div>
+    <script>
+        const para=document.querySelector(".container")
+const addbtn=document.querySelector("#add")
+const deletebtn=document.querySelector("#delete")
+addbtn.addEventListener('click',()=>{
+    const newpara=document.createElement('p')
+    newpara.innerText="This is new paragraph"
+    para.appendChild(newpara)
+})
+deletebtn.addEventListener('click',()=>{
+    let paragraph=para.children
+    if(paragraph.length>0){
+        para.removeChild(paragraph[paragraph.length-1])
+    }
+})
+
+    </script>
+</body>
+</html>
