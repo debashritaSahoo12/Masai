@@ -1,0 +1,31 @@
+#product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.product {
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.in-stock {
+    background-color: #c6efce;
+}
+
+.out-of-stock {
+    background-color: #ffc6c6;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-price {
+    color: #666;
+}
+
+.stock-status {
+    font-size: 14px;
+    margin-top: 10px;
+}
