@@ -1,11 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Create Post</title>
+  <style>
+    body {
+      font-family: math;
+      text-align: center;
+    }
+
+    form {
+      margin-bottom: 2rem;
+    }
+
+    input,
+    textarea {
+      padding: 9px 20px;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid grey;
+    }
+
+    button {
+      padding: 9px 20px;
+      background-color: blueviolet;
+      font-family: math;
+      color: white;
+      border-radius: 4px;
+      border: none;
+    }
+
+    #response {
+      margin-top: 1rem;
+      padding: 1rem;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
+
 <body>
-    
+
+  <h1>Create a Post</h1>
+
+  <form id="postForm">
+    <label>
+      Title:
+      <input type="text" id="title" required />
+    </label>
+    <br>
+    <label>
+      Body:
+      <textarea id="body" rows="4" required></textarea>
+    </label>
+    <br>
+    <button type="submit">Submit</button>
+    <div class="error" id="errorMsg"></div>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    const form = document.getElementById('postForm');
+    const titleInput = document.getElementById('title');
+    const bodyInput = document.getElementById('body');
+    const responseDiv = document.getElementById('response');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent form from reloading the page
+
+      const title = titleInput.value.trim();
+      const body = bodyInput.value.trim();
+
+      // Form validation
+      if (!title || !body) {
+        errorMsg.textContent = 'Both fields are required.';
+        return;
+      }
+
+      errorMsg.textContent = ''; // Clear any previous error
+
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, body })
+        });
+
+        const result = await res.json();
+
+        // Display response
+        responseDiv.innerHTML = `
+          <h3>Post Created Successfully!</h3>
+          <p><strong>ID:</strong> ${result.id}</p>
+          <p><strong>Title:</strong> ${result.title}</p>
+          <p><strong>Body:</strong> ${result.body}</p>
+        `;
+
+        // Optionally clear the form
+        form.reset();
+
+      } catch (error) {
+        responseDiv.innerHTML = `<p style="color:red;">Error creating post.</p>`;
+        console.error('Error:', error);
+      }
+    });
+  </script>
+
 </body>
+
 </html>
