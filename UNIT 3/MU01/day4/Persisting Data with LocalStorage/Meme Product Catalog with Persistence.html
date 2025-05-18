@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme products</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: math;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    input,
+    button,
+    select {
+      padding: 9px 20px;
+      font-family: math;
+      border: 1px solid grey;
+      border-radius: 4px;
+      margin-left: 20px;
+    }
+
+    #fetch {
+      background-color: blueviolet;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    #searchBtn {
+      background-color: rgb(28, 6, 49);
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    #para1 {
+      text-align: center;
+    }
+
+    #para2 {
+      text-align: center
+    }
+
+    .memesgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .meme_cards {
+      border: 1px solid #ccc;
+      background-color: #eab98e;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .meme_cards img {
+      max-width: 100%;
+      height: 200px;
+    }
+
+    .favCard {
+      border: 1px solid #ccc;
+      background-color: #eab98e;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .favCard img {
+      max-width: 100%;
+      height: 200px;
+    }
+
+    .favorites {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    .fav {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="controls">
+      <button id="fetch">Fetch Memes</button>
+      <input type="text" id="search" placeholder="search meme by name...">
+      <button id="searchBtn">Search</button>
+      <select id="select">
+        <option value="name">Name (A-Z)</option>
+        <option value="width">Width</option>
+        <option value="height">Height</option>
+      </select>
+    </div>
+    <h2 id="para1">All Memes</h2>
+    <div class="memesgrid" id="memesGrid"></div>
+    <h2 id="para2">Favourites</h2>
+    <div class="fav" id="favMeme"></div>
+
+  </main>
+</body>
+<script>
+  let fetchBtn = document.getElementById("fetch");
+  let serach = document.getElementById("search");
+  let selectedValue = document.getElementById("select");
+  let memeGrid = document.getElementById("memesGrid");
+  let favGrid = document.getElementById("favMeme");
+  let searchBtn = document.getElementById("searchBtn");
+
+  let allMemes = [];
+  let filterMemes = [];
+
+  let favData = JSON.parse(localStorage.getItem("memesItem")) || [];
+  favData = favData.filter(m => m && m.id && m.name && m.url);
+
+  // fetch the memes---->
+  fetchBtn.addEventListener("click", async function () {
+    let res = await fetch('https://api.imgflip.com/get_memes');
+    let data = await res.json();
+    allMemes = data.data.memes;
+    filterMemes = [...allMemes];
+    renderMeme(filterMemes);
+    console.log();
+  });
+
+  // display memes--->
+  function renderMeme(meme) {
+    memeGrid.innerHTML = "";
+    meme.forEach((memes) => {
+      let memeDiv = document.createElement("div");
+      memeDiv.className = "meme_cards";
+      memeDiv.innerHTML = `
+       <h4>${memes.name}</h4>
+       <img src="${memes.url}" alt="${memes.name}">
+       <button id="fav" class="favorites">Add to Favourites</button>
+      `
+      memeDiv.querySelector('button').addEventListener("click", () => addToFav(memes));
+      memeGrid.appendChild(memeDiv);
+    })
+  };
+
+  // search memes by name--->
+  searchBtn.addEventListener("click", () => {
+    let query = document.getElementById("search").value.toLowerCase();
+    filterMemes = allMemes.filter((meme) => meme.name.toLowerCase().includes(query));
+    renderMeme(filterMemes);
+  })
+
+  //  added to fav--->
+  function addToFav(meme) {
+    if (!meme || !meme.id) return;
+    if (!favData.find(f => f.id === meme.id)) {
+      favData.push(meme);
+      localStorage.setItem("memesItem", JSON.stringify(favData));
+      renderFav();
+    }
+  }
+
+
+  //  display fav list--->
+  function renderFav() {
+    favGrid.innerHTML = "";
+    favData.forEach((memems) => {
+      let favDiv = document.createElement("div");
+      favDiv.className = "favCard";
+      favDiv.innerHTML = `
+      <h4>${memems.name}</h4>
+       <img src="${memems.url}" alt="${memems.name}">
+      `
+      favGrid.appendChild(favDiv);
+    })
+  }
+
+  // sort memes by their name , height , width--->
+  selectedValue.addEventListener("change", () => {
+    let sortBy = selectedValue.value;
+    if (sortBy === 'name') {
+      filterMemes.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    else if (sortBy === 'height') {
+      filterMemes.sort((a, b) => a.height - b.height)
+    }
+    else if (sortBy === 'width') {
+      filterMemes.sort((a, b) => a.width - b.width)
+    }
+    renderMeme(filterMemes);
+  })
+  renderFav();
+
+</script>
+
+</html>
