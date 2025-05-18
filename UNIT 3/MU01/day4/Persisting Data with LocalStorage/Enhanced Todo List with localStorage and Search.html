@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+ <style>
+.completed {
+  text-decoration: line-through;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#task-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#task-list li:last-child {
+  border-bottom: none;
+}
+
+.remove-btn {
+  float: right;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+ </style>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <input type="text" id="task-input" placeholder="Add new task">
+  <button id="add-task-btn">Add Task</button>
+  <input type="text" id="search-input" placeholder="Search tasks">
+  <ul id="task-list"></ul>
+  <script>
+    const taskInput = document.getElementById('task-input');
+const addTaskBtn = document.getElementById('add-task-btn');
+const taskList = document.getElementById('task-list');
+const searchInput = document.getElementById('search-input');
+
+// Initialize tasks
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+// Function to render tasks
+function renderTasks(searchTerm = '') {
+  taskList.innerHTML = '';
+  tasks.forEach((task) => {
+    if (task.text.toLowerCase().includes(searchTerm.toLowerCase())) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span style="text-decoration: ${task.completed ? 'line-through' : 'none'}">${task.text}</span>
+        <button class="remove-btn" data-id="${task.id}">Remove</button>
+        <button class="complete-btn" data-id="${task.id}">${task.completed ? 'Undo' : 'Complete'}</button>
+      `;
+      taskList.appendChild(li);
+    }
+  });
+}
+
+// Function to add task
+function addTask() {
+  const taskText = taskInput.value.trim();
+  if (taskText) {
+    const newTask = {
+      id: Date.now(),
+      text: taskText,
+      completed: false,
+    };
+    tasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    taskInput.value = '';
+    renderTasks(searchInput.value);
+  }
+}
+
+// Function to remove task
+function removeTask(id) {
+  tasks = tasks.filter((task) => task.id !== parseInt(id));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  renderTasks(searchInput.value);
+}
+
+// Function to toggle completion
+function toggleCompletion(id) {
+  tasks = tasks.map((task) => {
+    if (task.id === parseInt(id)) {
+      task.completed = !task.completed;
+    }
+    return task;
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  renderTasks(searchInput.value);
+}
+
+// Event listeners
+addTaskBtn.addEventListener('click', addTask);
+taskInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    addTask();
+  }
+});
+taskList.addEventListener('click', (e) => {
+  if (e.target.classList.contains('remove-btn')) {
+    removeTask(e.target.dataset.id);
+  } else if (e.target.classList.contains('complete-btn')) {
+    toggleCompletion(e.target.dataset.id);
+  }
+});
+searchInput.addEventListener('input', (e) => {
+  renderTasks(e.target.value);
+});
+
+// Initial render
+renderTasks();
+
+  </script>
+</body>
+</html>

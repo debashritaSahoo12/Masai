@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .light {
+        background-color: #f0f0f0;
+      }
+      
+      .dark {
+        background-color: #333;
+        color: #fff;
+      }
+      </style>
+</head>
+<body>
+    <form id="preferencesForm">
+        <label for="theme">Theme: </label>
+        <select id="theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+        <label for="language">Language:</label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+        </select>
+        <label for="notifications">Notifications:</label>
+        <input type="checkbox" id="notifications">
+        <button type="submit">Save Preferences</button>
+      </form>      
+</body>
+</html>
+<script>
+    const form = document.getElementById('preferencesForm');
+const theme = document.getElementById('theme'); // Fixed syntax error
+const language = document.getElementById('language'); // Fixed syntax error
+const notifications = document.getElementById('notifications'); // Fixed syntax error
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const preferences = {
+    theme: theme.value,
+    language: language.value,
+    notifications: notifications.checked,
+  };
+  localStorage.setItem('preferences', JSON.stringify(preferences));
+
+  // Apply theme dynamically
+  applyTheme(preferences.theme);
+
+  alert('Preferences Saved!');
+});
+
+function applyTheme(theme) {
+  document.body.className = theme; 
+}
+
+window.onload = () => {
+  const preferences = localStorage.getItem('preferences'); 
+  if (preferences) {
+    const { theme, language: lang, notifications: notify } = JSON.parse(preferences); 
+    theme.value = theme;
+    language.value = lang; // Fixed syntax error
+    notifications.checked = notify; // Fixed syntax error
+
+   
+    applyTheme(theme);
+}
+};
+</script>

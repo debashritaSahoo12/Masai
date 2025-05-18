@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher</title>
+<style>
+.light {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.blue {
+  background-color: #add8e6;
+  color: #000;
+}
+</style>
+</head>
+<body>
+  <select id="theme-select">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="blue">Blue</option>
+  </select>
+  <h1>Theme Switcher</h1>
+  <script>
+const themeSelect = document.getElementById('theme-select');
+function applyTheme(theme) {
+  document.body.className = theme;
+}
+function saveTheme(theme) {
+  sessionStorage.setItem('theme', theme);
+}
+function loadTheme() {
+  const savedTheme = sessionStorage.getItem('theme');
+  if (savedTheme) {
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+  } else {
+    applyTheme('light');
+  }
+}
+
+loadTheme();
+
+themeSelect.addEventListener('change', (e) => {
+  const selectedTheme = e.target.value;
+  applyTheme(selectedTheme);
+  saveTheme(selectedTheme);
+});
+  </script>
+</body>
+</html>

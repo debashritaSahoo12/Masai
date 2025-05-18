@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <input id="username" placeholder="Enter username">
+    <button onclick="login()">Login</button>
+    <div id="cart-container" style="display:none">
+        <h2>Cart</h2>
+        <input id="item-name" placeholder="Item name">
+        <input id="item-price" placeholder="Item price">
+        <input id="item-quantity" placeholder="Item quantity">
+        <button onclick="addItem()">Add Item</button>
+        <div id="cart-items"></div>
+        <p id="total-cost"></p>
+    </div>
+</body>
+</html>
+<script>
+    let currentUser = null;
+
+// Load cart data from localStorage
+function loadCartData() {
+    const cartData = localStorage.getItem('cartData');
+    return cartData ? JSON.parse(cartData) : {};
+}
+
+// Save cart data to localStorage
+function saveCartData(cartData) {
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+}
+
+// Login functionality
+function login() {
+    const username = document.getElementById('username').value;
+    if (!username) return;
+
+    const cartData = loadCartData();
+    if (!cartData[username]) {
+        cartData[username] = [];
+        saveCartData(cartData);
+    }
+
+    currentUser = username;
+    document.getElementById('cart-container').style.display = 'block';
+    updateCartDisplay();
+}
+
+// Update cart display
+function updateCartDisplay() {
+    const cartData = loadCartData();
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+
+    const userCart = cartData[currentUser];
+    let totalCost = 0;
+    userCart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+            ${item.itemName} - ${item.price} x ${item.quantity} = ${item.price * item.quantity}
+            <button onclick="editQuantity(${index})">Edit</button>
+            <button onclick="removeItem(${index})">Remove</button>
+        `;
+        cartItems.appendChild(itemElement);
+        totalCost += item.price * item.quantity;
+    });
+
+    document.getElementById('total-cost').innerText = `Total: $${totalCost}`;
+}
+
+// Add item to cart
+function addItem() {
+    const itemName = document.getElementById('item-name').value;
+    const itemPrice = parseFloat(document.getElementById('item-price').value);
+    const itemQuantity = parseInt(document.getElementById('item-quantity').value);
+
+    if (!itemName || !itemPrice || !itemQuantity) return;
+
+    const cartData = loadCartData();
+    cartData[currentUser].push({
+        itemName,
+        price: itemPrice,
+        quantity: itemQuantity
+    });
+    saveCartData(cartData);
+    updateCartDisplay();
+}
+function editQuantity(index) {
+    const newQuantity = prompt('Enter new quantity:');
+    if (!newQuantity) return;
+
+    const cartData = loadCartData();
+    cartData[currentUser][index].quantity = parseInt(newQuantity);
+    saveCartData(cartData);
+    updateCartDisplay();
+}
+
+// Remove item from cart
+function removeItem(index) {
+    const cartData = loadCartData();
+    cartData[currentUser].splice(index, 1);
+    saveCartData(cartData);
+    updateCartDisplay();
+}
+</script>

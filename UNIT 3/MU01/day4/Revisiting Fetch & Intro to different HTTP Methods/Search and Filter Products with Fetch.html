@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+            
+        }
+        #container div{
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        img{
+            max-width: 100%;
+
+        }
+    </style>
+</head>
+<body onload="filtered(),searched(),sortPrice()">
+    <select  id="category" onchange="filtered()">
+        <option value="all">ALL</option>
+        <option value="men's clothing">Mens</option>
+        <option value="jewelery">jewelery</option>
+        <option value="electronics">electronics</option>
+    </select>
+    <input type="text" placeholder="search" id="search" >
+    <button onclick="searched()">Search</button>
+<select id="sorting" onchange="sortPrice()">
+    <option value="lowtohigh">Low to High</option>
+    <option value="hightolow">High to Low</option>
+</select>
+    <div id="container"></div> 
+</body>
+</html>
+<script>
+    async function filtered() {
+    try {
+        let res=await fetch('https://fakestoreapi.com/products')
+        let data=await res.json()
+        let category=document.getElementById("category").value
+        let products=category=="all"?data:data.filter((product)=>product.category==category)
+
+        let container=document.getElementById("container")
+        container.innerHTML=""
+    sortPrice(products)
+products.forEach((ele)=>{
+    let div=document.createElement("div")
+    div.innerHTML=`
+    <h3>${ele.title}</h3>
+ <img src="${ele.image}" alt="">
+ <p>$${ele.price}</p>
+    `
+    container.appendChild(div);
+})
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+async function searched() {
+    try {
+        
+        let res=await fetch('https://fakestoreapi.com/products')
+        let data=await res.json()
+        let category=document.getElementById("search").value
+        let products=data.filter((ele)=>ele.title.includes(category))
+        let container=document.getElementById("container")
+        container.innerHTML=""
+    sortPrice(products)
+products.forEach((ele)=>{
+    let div=document.createElement("div")
+    div.innerHTML=`
+    <h3>${ele.title}</h3>
+ <img src="${ele.image}" alt="">
+ <p>$${ele.price}</p>
+    `
+    container.appendChild(div);
+})
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+function  sortPrice(products){
+    let sorting=document.getElementById("sorting").value
+        products.sort((a,b)=>sorting=="lowtohigh"?a.price-b.price:b.price-a.price)
+}
+</script>

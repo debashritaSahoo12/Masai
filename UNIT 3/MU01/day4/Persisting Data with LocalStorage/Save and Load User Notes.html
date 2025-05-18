@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="msg" id="msg" cols="30" placeholder="Type somethings..."></textarea>
+    <button onclick="loadBtn()">load notes</button>
+    <button onclick="clearBtn()">clear notes</button>
+<ul id="textList"></ul>
+    <script>
+function loadBtn(){
+    let msg=document.getElementById("msg").value
+    let texts=JSON.parse(localStorage.getItem('texts'))||[]
+    texts.push(msg)
+    localStorage.setItem('texts',JSON.stringify(texts))
+    displayText()
+}
+function displayText(){
+    let texts=JSON.parse(localStorage.getItem('texts'))
+    let textList=document.getElementById('textList')
+    textList.innerHTML=""
+    texts.forEach((ele)=>{
+        let li=document.createElement('li')
+        li.innerText=ele
+     textList.appendChild(li)
+    })
+}
+function clearBtn(){
+localStorage.removeItem('texts')
+displayText()
+}
+displayText()
+    </script>
+</body>
+</html>
