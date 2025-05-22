@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(247, 240, 230);
+  }
+  #lists{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    padding: 10px;
+    text-align: center;
+  }
+  #lists>div{
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    border: 2px solid rgb(197, 193, 190);
+  }
+  img{
+    max-width: 80%;
+  }
+  input,button,select{
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 5px;
+  }

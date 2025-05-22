@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+    }
+    input{
+      margin: 10px;
+      padding: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button{
+      background-color: cornflowerblue;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 7px;
+    }
+    </style>
+</head>
+<body>
+  <div id="lists"></div>
+    <input type="text" id="name" placeholder="Enter Your Name" required>
+    <input type="email" id="email" placeholder="Enter Your Email" required>
+    <input type="password" id="password" placeholder="Enter Your Password" required>
+    <button onclick="register()">Register</button>
+</body>
+</html>
+<script>
+async function register(){
+    let name=document.getElementById("name").value
+    let email=document.getElementById("email").value
+    let password=document.getElementById("password").value
+    let lists=document.getElementById("lists")
+    if (!name || !email || !password) {
+      lists.innerText = "Please fill all the fields";
+      return;
+    }
+let user={
+    "name":name,
+    "email":email,
+    "password":password
+}
+ let res=await fetch('https://682ddc2e746f8ca4a47ae3d8.mockapi.io/userform',{
+    method:'POST',
+    headers:{
+            "Content-Type":"application/json",
+        },
+        body:JSON.stringify(user)
+ })
+if(!res.ok){
+ lists.innerHTML=" <h3>Something went wrong</h3>"
+}else{
+  lists.innerHTML=" <h3>Successfully Added</h3>"
+ document.getElementById("password").value=""
+ document.getElementById("name").value=""
+document.getElementById("email").value=""
+}
+
+}
+</script>
