@@ -1,0 +1,12 @@
+{
+  "users": {
+    "user1": {
+      "name": "John Doe",
+      "message": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam, odit."
+    },
+    "user2": {
+      "name": "Jane Smith",
+      "message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, voluptate! Unde, dolore sit."
+    }
+  }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: rgb(234, 247, 247);
+  }
+  button {
+    background-color: cornflowerblue;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+    font-size: 16px;
+  }
+  input,textarea{
+    padding: 8px;
+    margin: 10px;
+font-size: 16px;
+  }
+  #msgs{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #msgs>div{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    background-color: antiquewhite;
+    text-align: center;
+    width: 200px;
+  }
+</style>
+</head>
+<body>
+    <div id="lists"></div>
+    <input type="text" id="name" placeholder="Enter your name" required><br><br>
+    <textarea cols="30" rows="3" id="msg" placeholder="Type something...." required></textarea><br><br>
+    <input type="text" id="msgId" placeholder="Message ID" readonly><br><br>
+    <button id="addbtn" onclick="editMsg()">SAVE</button>
+    <div id="msgs"></div>
+</body>
+</html>
+<script>
+    let baseurl="https://feedback-34aa9-default-rtdb.asia-southeast1.firebasedatabase.app/users"
+
+    async function addBtn() {
+  try {
+    let lists = document.getElementById("lists");
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("msg").value;
+    let feedback = {
+      name: document.getElementById("name").value,
+      message: document.getElementById("msg").value,
+    };
+    if (!name && !message) {
+      lists.innerHTML = `<p>Please fill the form</p>`;
+      return;
+    }
+    let res = await fetch(
+      "https://feedback-34aa9-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedback),
+      }
+    );
+    document.getElementById("name").value = "";
+    document.getElementById("msg").value = "";
+    lists.innerHTML = `<h3>Successfully Added</h3>`;
+    displayMessages()
+  } catch (error) {
+    console.log("Some thing went wrong", error);
+  }
+}
+async function displayMessages(){
+    let res=await fetch("https://feedback-34aa9-default-rtdb.asia-southeast1.firebasedatabase.app/users.json")
+    let data =await res.json()
+    let msgs=document.getElementById("msgs")
+    msgs.innerHTML=""
+    let feedbacks=Object.entries(data).map(([id,msg])=>({id,...msg}))
+    feedbacks.forEach((msg)=>{
+        let div=document.createElement("div")
+        div.innerHTML=`
+        <h3>${msg.name}</h3>
+    <p>${msg.message}</p>
+    <button onclick="editBtn('${msg.id}','${msg.name}','${msg.message}')">Edit</button>
+        `
+msgs.appendChild(div)
+    })
+}
+
+function editBtn(id,name,message){
+document.getElementById("msgId").value=id
+    document.getElementById("name").value=name
+ document.getElementById("msg").value=message
+}
+async function editMsg() {
+    let msgId=document.getElementById("msgId").value
+    let feedback={
+        name: document.getElementById("name").value,
+        message: document.getElementById("msg").value
+    }
+    if(msgId){
+        await fetch(`${baseurl}/${msgId}.json`,{
+            method:"PATCH",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(feedback)
+        })
+        document.getElementById("msgId").value=""
+    }else{
+       addBtn()
+    }
+    document.getElementById("msgId").value=""
+    document.getElementById("name").value=""
+ document.getElementById("msg").value=""
+ displayMessages()
+}
+
+</script>
