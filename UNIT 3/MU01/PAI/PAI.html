@@ -143,6 +143,10 @@
   async function search() {
     let inputs = document.getElementById("search").value;
     lists.innerHTML = "";
+    if(!inputs){
+      return alert("Enter student name")
+    }
+    
   }
 
   fetchStudent();
