@@ -84,21 +84,21 @@ grade:document.getElementById("grade").value,
 score:document.getElementById("score").value
     }
     if(studentId){
-        await fetch(`${baseurl}/${studentId}`.json,{
+        await fetch(`${baseurl}/${studentId}.json`,{
             method:"PATCH",
             headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(studentDetails)
+            "Content-Type":"application/json",
+        },
+        body:JSON.stringify(studentDetails)
         })
-        document.getElementById("studentId").value=""
+        document.getElementById('studentId').value=""
     }else{
-        await fetch(`${baseurl}`.json,{
+        await fetch(`${baseurl}.json`,{
             method:"POST",
             headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(studentDetails)
+            "Content-Type":"application/json",
+        },
+        body:JSON.stringify(studentDetails)
         })
     }
     document.getElementById("name").value=""
