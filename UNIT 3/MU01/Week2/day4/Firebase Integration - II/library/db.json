@@ -1,0 +1,146 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "genre": "Science Fiction",
+      "publishedYear": 1965,
+      "available": true
+    },
+    {
+      "id": 2,
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publishedYear": 1949,
+      "available": false
+    },
+    {
+      "id": 3,
+      "title": "Foundation",
+      "author": "Isaac Asimov",
+      "genre": "Science Fiction",
+      "publishedYear": 1951,
+      "available": true
+    },
+    {
+      "id": 4,
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "genre": "Dystopian",
+      "publishedYear": 1932,
+      "available": true
+    },
+    {
+      "id": 5,
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "publishedYear": 1937,
+      "available": true
+    },
+    {
+      "id": 6,
+      "title": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "genre": "Dystopian",
+      "publishedYear": 1953,
+      "available": false
+    },
+    {
+      "id": 7,
+      "title": "Neuromancer",
+      "author": "William Gibson",
+      "genre": "Cyberpunk",
+      "publishedYear": 1984,
+      "available": true
+    },
+    {
+      "id": 8,
+      "title": "The Left Hand of Darkness",
+      "author": "Ursula K. Le Guin",
+      "genre": "Science Fiction",
+      "publishedYear": 1969,
+      "available": true
+    },
+    {
+      "id": 9,
+      "title": "Snow Crash",
+      "author": "Neal Stephenson",
+      "genre": "Cyberpunk",
+      "publishedYear": 1992,
+      "available": false
+    },
+    {
+      "id": 10,
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "genre": "Science Fiction",
+      "publishedYear": 2011,
+      "available": true
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "membershipDate": "2023-01-15",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "membershipDate": "2022-05-23",
+      "active": false
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "membershipDate": "2023-07-10",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Bob Brown",
+      "membershipDate": "2021-12-01",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Charlie White",
+      "membershipDate": "2020-03-17",
+      "active": false
+    },
+    {
+      "id": 6,
+      "name": "Diana Green",
+      "membershipDate": "2023-03-22",
+      "active": true
+    },
+    {
+      "id": 7,
+      "name": "Edward Black",
+      "membershipDate": "2022-08-14",
+      "active": true
+    },
+    {
+      "id": 8,
+      "name": "Fiona Blue",
+      "membershipDate": "2023-11-09",
+      "active": true
+    },
+    {
+      "id": 9,
+      "name": "George Red",
+      "membershipDate": "2022-09-30",
+      "active": false
+    },
+    {
+      "id": 10,
+      "name": "Hannah Yellow",
+      "membershipDate": "2023-05-19",
+      "active": true
+    }
+  ]
+}

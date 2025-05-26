@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Managment System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="forms">
+    <div class="form-card">
+      <h2>Add Book</h2>
+      <label for="title">Title</label> <br>
+      <input type="text" id="title" placeholder="Title of book" /> <br> <br>
+
+      <label for="author">Author</label> <br>
+      <input type="text" id="author" placeholder="Author's name" /> <br> <br>
+
+      <label for="genre">Genre</label> <br>
+      <input type="text" id="genre" placeholder="Genre of the book" /> <br> <br>
+
+      <label for="publish_year">Published Year</label> <br>
+      <input type="number" id="publish_year" placeholder="e.g., 1965" /> <br> <br>
+
+      <label for="available">
+        <input type="checkbox" id="available" />
+        Available
+      </label> <br> <br>
+
+      <button id="addBookBtn">Add Book</button>
+    </div>
+
+    <div class="form-card">
+      <h2>Add Member</h2>
+      <label for="name">Name</label> <br>
+      <input type="text" id="name" placeholder="Member's name" /> <br> <br>
+
+      <label for="memDate">Membership Date</label> <br>
+      <input type="date" id="memDate" /> <br> <br>
+
+      <label for="active">
+        <input type="checkbox" id="active" />
+        Active
+      </label> <br> <br>
+
+      <button id="addMemberBtn">Add Member</button>
+    </div>
+  </div>
+  <div class="display">
+    <!-- Books Section -->
+    <div class="books">
+      <h2>Books</h2>
+
+      <label>Genre:</label> 
+      <select id="filterGenre">
+        <option value="">All</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Dystopian">Dystopian</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Cyberpunk">Cyberpunk</option>
+      </select> 
+
+      <label>Author:</label> 
+      <input type="text" id="filterAuthor" placeholder="Author name" /><br> <br>
+
+      <label>Available:</label> 
+      <select id="filterAvailable"> 
+        <option value="">All</option>
+        <option value="true">Available</option>
+        <option value="false">Unavailable</option>
+      </select> 
+
+      <label>Sort by:</label> 
+      <select id="sortBooks">
+        <option value="">None</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="publishedYear">Published Year</option>
+      </select> <br> <br>
+
+      <button onclick="fetchBooks()">Apply Filters</button>
+
+      <div id="booksList" class="boooks">
+
+      </div>
+    </div>
+
+    <!-- Members Section -->
+    <div class="members">
+      <h2>Members</h2>
+
+      <label>Active:</label>
+      <select id="filterActive">
+        <option value="">All</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select> <br> <br>
+
+      <label>Membership Date (after):</label>
+      <input type="date" id="filterMembershipDate" /> 
+
+      <label>Sort by:</label> 
+      <select id="sortMembers">
+        <option value="">None</option>
+        <option value="name">Name</option>
+        <option value="membershipDate">Membership Date</option>
+      </select> <br> <br>
+      <button onclick="fetchMembers()">Apply Filters</button>
+
+      <div id="membersList" class="memberss">
+
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>

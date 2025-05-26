@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: math;
+  background-color: beige;
+}
+
+.forms {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  text-align: left;
+  margin: 20px auto;
+}
+
+.display {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.books {
+  margin: 20px;
+  margin: 20px;
+  width: 50%;
+  text-align: center;
+}
+
+.members {
+  margin: 20px;
+  width: 50%;
+  text-align: center;
+}
+
+input,
+select,
+button {
+  padding: 9px 20px;
+  border-radius: 4px;
+  border: 1px solid #bdb7b7;
+  cursor: pointer;
+}
+
+button {
+  background-color: blueviolet;
+  color: white;
+  border: none;
+}
+
+#booksList,
+#membersList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.booksList,
+.memberDiv {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.booksList p,
+h3 {
+  margin-top: 10px;
+}
+
+.memberDiv p,
+h3 {
+  margin-top: 10px;
+}
+
+.books h2 {
+  margin-bottom: 10px;
+}
+
+.members h2 {
+  margin-bottom: 10px;
+}
