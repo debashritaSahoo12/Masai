@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sort Users</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  margin-top: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  margin-right: 10px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user {
+  padding: 15px;
+  background-color: #f2f2f2;
+  border-left: 5px solid #007bff;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Directory</h1>
+
+    <div class="controls">
+      <label for="sort">Sort by Name:</label>
+      <select id="sort">
+        <option value="asc">A → Z</option>
+        <option value="desc">Z → A</option>
+      </select>
+    </div>
+
+    <div id="users" class="user-list"></div>
+    <div id="error" class="error-message"></div>
+  </div>
+
+</body>
+</html>
+<script>
+    const usersContainer = document.getElementById('users');
+const sortSelect = document.getElementById('sort');
+const errorMessage = document.getElementById('error');
+
+sortSelect.addEventListener('change', fetchAndRenderUsers);
+
+async function fetchAndRenderUsers() {
+  const sortOrder = sortSelect.value; // asc or desc
+  const apiUrl = `https://jsonplaceholder.typicode.com/users`;
+
+  try {
+    errorMessage.textContent = ''; // Clear previous errors
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch users.');
+    }
+
+    let users = await response.json();
+
+    // Simulated "query param"-based sorting (since API doesn't support sorting)
+    users.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (sortOrder === 'asc') return nameA.localeCompare(nameB);
+      else return nameB.localeCompare(nameA);
+    });
+
+    renderUsers(users);
+  } catch (error) {
+    usersContainer.innerHTML = '';
+    errorMessage.textContent = error.message;
+  }
+}
+
+function renderUsers(users) {
+  usersContainer.innerHTML = '';
+  users.forEach(user => {
+    const userElement = document.createElement('div');
+    userElement.classList.add('user');
+    userElement.innerHTML = `
+      <h3>${user.name}</h3>
+      <p>Email: ${user.email}</p>
+      <p>Phone: ${user.phone}</p>
+    `;
+    usersContainer.appendChild(userElement);
+  });
+}
+
+// Initial fetch on load
+fetchAndRenderUsers();
+
+</script>
