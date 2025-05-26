@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="search here"><button onclick="search()">Search</button>
+    <input type="text" placeholder="Student ID" id="studentId" readonly>
+    <label>Enter Your Name: </label>
+    <input type="text" minlength="3" id="name" placeholder="Enter Your Name" />
+    <label>Age: </label>
+    <input type="number" min="10" max="20" id="age" />
+    <select id="grade">
+      <option value="9th">9th</option>
+      <option value="10th">10th</option>
+      <option value="11th">11th</option>
+      <option value="12th">12th</option>
+    </select>
+    <select id="section">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+    <label>Score: </label>
+    <input type="number" min="0" max="100" id="score" />
+    <button onclick="editStudent()">ADD</button>
+    <div id="lists"></div>
+  </body>
+</html>
+<script>
+  let baseurl =
+    "https://students-28d58-default-rtdb.asia-southeast1.firebasedatabase.app/students";
+  let lists = document.getElementById("lists");
+
+  async function fetchStudent() {
+    lists.innerHTML=""
+    let res = await fetch(`${baseurl}.json`);
+    let data = await res.json();
+    let studentArr = Object.entries(data).map(([id, student]) => ({
+      id,
+      ...student,
+    }));
+    if (studentArr.length == 0) {
+      lists.innerHTML = `<p>No result found</p>`;
+      return;
+    } else {
+       display(studentArr);
+    }
+  }
+  async function display(students) {
+    students.forEach((student) => {
+      let div = document.createElement("div");
+      div.innerHTML = `
+<h2>${student.name}</h2>
+<p>age:${student.age}</p>
+<p>grade:${student.grade}</p>
+<p>section:${student.section}</p>
+<h4>score:${student.score}</h4>
+<button onclick="editData('${student.id}','${student.name}','${student.age}','${student.grade}','${student.section}','${student.score}')">Edit</button>
+    <button onclick="deleteStudent('${student.id}')">Delete</button>
+`;
+      lists.appendChild(div);
+    });
+  }
+  function editData(id,name,age,grade,section,score) {
+ document.getElementById("studentId").value=id
+ document.getElementById("name").value=name
+ document.getElementById("age").value=age
+ document.getElementById("grade").value=grade
+ document.getElementById("section").value=section
+ document.getElementById("score").value=score
+}
+
+async function editStudent(){
+    let studentId=document.getElementById("studentId").value
+    let studentDetails={
+        name:document.getElementById("name").value,
+age:document.getElementById("age").value,
+grade:document.getElementById("grade").value,
+ section:document.getElementById("section").value,
+score:document.getElementById("score").value
+    }
+    if(studentId){
+        await fetch(`${baseurl}/${studentId}`.json,{
+            method:"PATCH",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(studentDetails)
+        })
+        document.getElementById("studentId").value=""
+    }else{
+        await fetch(`${baseurl}`.json,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(studentDetails)
+        })
+    }
+    document.getElementById("name").value=""
+document.getElementById("age").value=""
+document.getElementById("grade").value=""
+ document.getElementById("section").value=""
+document.getElementById("score").value=""
+fetchStudent()
+}
+
+async function deleteStudent(id){
+await fetch(`${baseurl}/${id}.json`,{
+  method:"DELETE"
+})
+fetchStudent()
+}
+
+async function search(){
+  let inputs=document.getElementById("search").value
+  lists.innerHTML=""
+    let res = await fetch(`${baseurl}.json`);
+    let data = await res.json();
+    let studentArr = Object.entries(data).map(([id, student]) => ({
+      id,
+      ...student,
+    }));
+    studentsfilter((stud)=>stud.name.toLowerCase().includes(inputs.toLowerCase())).forEach((student) => {
+      let div = document.createElement("div");
+      div.innerHTML = `
+<h2>${student.name}</h2>
+<p>age:${student.age}</p>
+<p>grade:${student.grade}</p>
+<p>section:${student.section}</p>
+<h4>score:${student.score}</h4>
+<button onclick="editData('${student.id}','${student.name}','${student.age}','${student.grade}','${student.section}','${student.score}')">Edit</button>
+    <button onclick="deleteStudent('${student.id}')">Delete</button>
+`;
+      lists.appendChild(div);
+    });
+}
+
+  fetchStudent();
+</script>
