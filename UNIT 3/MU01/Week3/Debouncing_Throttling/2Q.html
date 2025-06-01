@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debounced Movie Search</title>
+  <style>
+    body {
+      
+      margin: 30px;
+    }
+    #searchBox {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .movie-title {
+      margin: 5px 0;
+      padding: 5px;
+      background-color: white;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Search Movies</h2>
+  <input type="text" id="searchBox" placeholder="Type a movie name..." />
+  <div id="results"></div>
+</body>
+</html>
+<script>
+    const input = document.getElementById('searchBox');
+    const resultsDiv = document.getElementById('results');
+    let timeoutId;
+
+    input.addEventListener('input', () => {
+      clearTimeout(timeoutId); 
+      timeoutId = setTimeout(() => {
+        const query = input.value.trim();
+        if (query === '') {
+          resultsDiv.innerHTML = '';
+          return;
+        }
+    fetch(`https://www.omdbapi.com/?apikey=be0b1406&s=${query}`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.Response === "True") {
+              const movies = data.Search;
+              resultsDiv.innerHTML = '';
+              movies.forEach(movie => {
+                const movieDiv = document.createElement('div');
+                movieDiv.classList.add('movie-title');
+                movieDiv.textContent = movie.Title;
+                resultsDiv.appendChild(movieDiv);
+              });
+          } else {
+              resultsDiv.innerHTML = `<p>No results found</p>`;
+            }
+          })
+          .catch(error => {
+            resultsDiv.innerHTML = `<p>Error fetching data</p>`;
+            console.error('Fetch error:', error);
+          });
+
+      }, 500); 
+    });
+  </script>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Search here</h1>
+    <input type="text" id="inputs" />
+    <div id="lists"></div>
+    
+  </body>
+</html>
+<script>
+  let inputs = document.getElementById("inputs");
+  let lists = document.getElementById("lists");
+var timer;
+  inputs.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer=setTimeout(() => {
+      let query = inputs.value.trim();
+      lists.innerHTML=""
+      if (!query) {
+        lists.innerHTML = "";
+      }
+      async function display() {
+        try {
+          let res=await fetch(`https://www.omdbapi.com/?apikey=be0b1406&s=${query}`)
+          let data=await res.json()
+          if(data.Search){
+            data.Search.forEach((movie)=>{
+              let div=document.createElement("div")
+              div.innerHTML=`<p>${movie.Title}</p>`
+              lists.appendChild(div)
+            })
+          }else{
+            lists.innerHTML="<p>no movie</p>"
+          }
+        } catch (error) {
+          lists.innerHTML="<p>Error in fetching data</p>"
+        }
+      }
+      display();
+    }, 1000);
+  });
+</script> -->
