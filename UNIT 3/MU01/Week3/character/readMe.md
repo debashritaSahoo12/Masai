@@ -1,1 +1,1 @@
-deployment link---> https://morty-ricky-app.netlify.app/
+deployment link---> https://webrickmorty.netlify.app/
