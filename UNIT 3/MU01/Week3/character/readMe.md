@@ -1,0 +1,1 @@
+deployment link---> https://morty-ricky-app.netlify.app/

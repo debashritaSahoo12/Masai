@@ -1,0 +1,92 @@
+body {
+  font-family: math;
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+h1 {
+  text-align: center;
+}
+
+div#gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.card {
+  background: #0c002c;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card img {
+  width: 70%;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+a {
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #5379e0;
+  color: white;
+  margin-bottom: 15px;
+}
+
+li {
+  list-style: none;
+  padding: 5px;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  background: #890000;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+button#prev {
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid #737373;
+  background-color: rgb(239, 33, 33);
+  color: white;
+  font-size: 14px;
+  font-family: math;
+  letter-spacing: 0.3px;
+}
+
+button#next {
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid #737373;
+  background-color: rgb(239, 33, 33);
+  color: white;
+  font-size: 14px;
+  font-family: math;
+  letter-spacing: 0.3px;
+}
+
+div#character-detail {
+  text-align: center;
+  background-color: antiquewhite;
+}
+
+img {
+  border-radius: 10px;
+  width: 20%;
+}
