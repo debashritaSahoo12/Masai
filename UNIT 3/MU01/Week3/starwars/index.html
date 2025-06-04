@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars Characters</title>
+ <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 10px;
+  border: 1px solid #333;
+  cursor: pointer;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.pagination {
+  text-align: center;
+  margin: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+ </style>
+</head>
+<body>
+  <h1>Star Wars Character Gallery</h1>
+  <div id="gallery" class="grid"></div>
+  <div class="pagination">
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+  </div>
+  <footer id="clock"></footer>
+  <script>
+    const API_URL = "https://akabab.github.io/starwars-api/api/all.json";
+let characters = [];
+let page = 0;
+const perPage = 6;
+
+async function fetchCharacters() {
+  const res = await fetch(API_URL);
+  characters = await res.json();
+  displayPage();
+}
+
+function displayPage() {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  const start = page * perPage;
+  const end = start + perPage;
+  const currentChars = characters.slice(start, end);
+
+  currentChars.forEach(char => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${char.image}" alt="${char.name}">
+      <h3>${char.name}</h3>
+      <p>${char.species || "Unknown"}</p>
+      <p>${char.gender}</p>
+    `;
+    card.onclick = () => {
+      window.open(`detail.html?id=${char.id}`, "_blank");
+    };
+    gallery.appendChild(card);
+  });
+}
+
+document.getElementById("next").onclick = () => {
+  if ((page + 1) * perPage < characters.length) {
+    page++;
+    displayPage();
+  }
+};
+
+document.getElementById("prev").onclick = () => {
+  if (page > 0) {
+    page--;
+    displayPage();
+  }
+};
+
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString();
+  const date = now.toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  });
+  document.getElementById("clock").textContent = `${time} ${date}`;
+}
+
+setInterval(updateClock, 1000);
+fetchCharacters();
+
+  </script>
+</body>
+</html>

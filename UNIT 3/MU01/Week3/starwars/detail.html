@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Character Details</title>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 10px;
+  border: 1px solid #333;
+  cursor: pointer;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.pagination {
+  text-align: center;
+  margin: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+  <div id="detail"></div>
+  <footer id="clock"></footer>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+const charId = urlParams.get("id");
+
+async function fetchCharacter() {
+  const res = await fetch(`https://akabab.github.io/starwars-api/api/id/${charId}.json`);
+  const char = await res.json();
+
+  document.getElementById("detail").innerHTML = `
+    <h1>${char.name}</h1>
+    <img src="${char.image}" alt="${char.name}" style="max-width: 100%">
+    <p><strong>Gender:</strong> ${char.gender}</p>
+    <p><strong>Species:</strong> ${char.species}</p>
+    <p><strong>Homeworld:</strong> ${char.homeworld}</p>
+    <p><strong>Affiliations:</strong> ${char.affiliations.join(", ")}</p>
+    <p><strong>Height:</strong> ${char.height} cm</p>
+    <p><strong>Mass:</strong> ${char.mass} kg</p>
+    <p><strong>Eye Color:</strong> ${char.eyeColor}</p>
+    <p><strong>Hair Color:</strong> ${char.hairColor}</p>
+    <p><strong>Skin Color:</strong> ${char.skinColor}</p>
+  `;
+}
+
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString();
+  const date = now.toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  });
+  document.getElementById("clock").textContent = `${time} ${date}`;
+}
+
+setInterval(updateClock, 1000);
+fetchCharacter();
+
+  </script>
+</body>
+</html>
