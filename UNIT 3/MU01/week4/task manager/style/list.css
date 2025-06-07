@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: math;
+  background-color: aliceblue;
+}
+
+.forms {
+  width: 20%;
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 10px;
+  /* background-color: antiquewhite; */
+}
+
+input,
+textarea {
+  padding: 9px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  background: none;
+}
+
+#submit,
+#logoutBtn {
+  padding: 9px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: red;
+  letter-spacing: .5px;
+  cursor: pointer;
+}
+
+.listHead {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.display {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.display p {
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  background-color: antiquewhite;
+}
+
+span {
+  color: brown;
+  background-color: antiquewhite;
+}
+
+.display {
+  background-color: antiquewhite;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+button.btns {
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.taskscard {
+  border: 1px solid rgb(31, 31, 4);
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+  border-radius: 5px;
+}

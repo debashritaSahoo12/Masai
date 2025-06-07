@@ -1,0 +1,131 @@
+/* General Css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: math;
+}
+
+/* Body styling */
+body {
+  background-color: #120533;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  font-family: 'Prociono', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Container Part */
+.container {
+  background-color: rgb(255 255 255);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h2 {
+  color: black;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid rgb(231 214 214);
+  font-size: 16px;
+  font-family: math;
+}
+
+/* Button */
+button {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #688fe9;
+  border: 1px solid whitesmoke;
+  font-size: 16px;
+  transition: ease-in-out 0.3s;
+  font-family: math;
+}
+
+button:hover {
+  background-color: #396fec;
+}
+
+#sign-up-text {
+  margin-top: 20px;
+}
+
+/* error and succes */
+p {
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+h2 {
+  color: black;
+  margin-bottom: 20px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid rgb(231 214 214);
+  font-size: 16px;
+  /* font-family: math; */
+}
+
+/* Button */
+button {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #688fe9;
+  border: 1px solid whitesmoke;
+  font-size: 16px;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+
+button:hover {
+  background-color: #396fec;
+}
+
+#sign-up-text {
+  margin-top: 20px;
+}
+
+/* error and succes */
+p {
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+}
