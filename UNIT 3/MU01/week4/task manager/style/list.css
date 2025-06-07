@@ -84,3 +84,18 @@ button.btns {
   margin: 20px auto;
   border-radius: 5px;
 }
+@media (max-width:768px) {
+  .display p {
+    font-size: 20px;
+  }
+
+  .display {
+    width: 90%;
+    margin: auto;
+  }
+
+  .forms {
+    width: 70%;
+    margin: 10px auto;
+  }
+}
