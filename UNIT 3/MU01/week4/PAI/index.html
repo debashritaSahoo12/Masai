@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+      }
+      input,
+      select {
+        padding: 10px;
+        margin: 10px;
+      }
+      #lists {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+      }
+      #lists div {
+        border: 1px solid gray;
+        padding: 10px;
+        
+      }
+      #lists div >*{
+        margin: 5px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        background: rgb(76, 138, 239);
+        border: none;
+        border-radius: 5px;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body onload="fetched()">
+    <h2>Rick & Morty Explorer</h2>
+    <input type="text" id="query" placeholder="Search Name" />
+    <select id="status" onchange="applyFilter()">
+      <option value="Alive">Alive</option>
+      <option value="Dead">Dead</option>
+      <option value="Unknown">Unknown</option>
+    </select>
+    <select id="species" onchange="applyFilter()">
+      <option value="Human">Human</option>
+      <option value="Alien">Alien</option>
+      <option value="Robot">Robot</option>
+    </select>
+    <div id="lists"></div>
+  </body>
+</html>
+<script>
+  let baseurl = "https://rickandmortyapi.com/api/character";
+  let chars = [];
+  async function fetched() {
+    let res = await fetch(baseurl);
+    let data = await res.json();
+    chars = data.results;
+    display(chars);
+  }
+  function display(chars) {
+    console.log(chars);
+    let lists = document.getElementById("lists");
+    lists.innerHTML = "";
+    chars.forEach((char) => {
+      let div = document.createElement("div");
+      div.innerHTML = `
+<img src="${char.image}" alt="${char.name}">
+<h3>${char.name}</h3>
+<p><em>${char.species}</em></p>
+<p>${char.status}</p>
+<p>${char.location.name}</p>
+<button id="view-btn" onclick="viewBtn(${char.id})"><a href="char.html">View more</a></button>
+
+`;
+      lists.appendChild(div);
+    });
+  }
+  function applyFilter() {
+    let query = document.getElementById("query").value.toLowerCase();
+    let species = document.getElementById("species").value;
+    let status = document.getElementById("status").value;
+    let filtered = chars.filter((char) => {
+      return (
+        char.name.toLowerCase().includes(query) &&
+        char.species == species &&
+        char.status == status
+      );
+    });
+    display(filtered);
+  }
+  let timer;
+  document.getElementById("query").addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      applyFilter();
+    }, 300);
+  });
+ 
+</script>
