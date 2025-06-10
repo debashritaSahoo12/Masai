@@ -63,11 +63,14 @@
       <option value="Robot">Robot</option>
     </select>
     <div id="lists"></div>
+    <button id="prevbtn">Prev</button>
+    <button id="prevbtn">Next</button>
   </body>
 </html>
 <script>
   let baseurl = "https://rickandmortyapi.com/api/character";
   let chars = [];
+  let curr=1
   async function fetched() {
     let res = await fetch(baseurl);
     let data = await res.json();
@@ -112,5 +115,5 @@
       applyFilter();
     }, 300);
   });
- 
+
 </script>
