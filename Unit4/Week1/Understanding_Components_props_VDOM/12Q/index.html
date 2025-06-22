@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+<script type="text/babel">
+
+function Card({title,children}){
+    return (
+    <div className="card">
+      <h2>{title}</h2>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+function App(){
+    return (
+        <>
+        <Card title="my card 1">
+            <p>This is the card 1 content!</p>
+        </Card>
+        <Card title="my card 2">
+            <p>This is the card 1 content!</p>
+        </Card>
+        <Card title="my card 1">
+            <p>This is the card 1 content!</p>
+        </Card>
+        </>
+    )
+}
+
+    let root=ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App/>)
+</script>
