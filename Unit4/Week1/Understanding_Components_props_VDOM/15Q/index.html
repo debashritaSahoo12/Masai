@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script
-    crossorigin
-    src="https://unpkg.com/react@18/umd/react.development.js"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-  ></script>
+  <meta charset="UTF-8">
+  <title>Simple Blog Viewer</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const blogs = [
+      { title: "Mastering JavaScript", content: "JavaScript is a powerful language for web development." },
+      { title: "React in Indian Startups", content: "React is widely used in many Indian tech companies." },
+      { title: "Career in Web Development", content: "Explore job roles and growth in web development." }
+    ];
+
+    function App() {
+      const [selectedBlog, setSelectedBlog] = useState(null);
+
+      return (
+        <div>
+          <h1>Blog Titles</h1>
+          {blogs.map((blog, i) => (
+            <div key={i}>
+              <button onClick={() => setSelectedBlog(blog)}>{blog.title}</button>
+            </div>
+          ))}
+
+          <hr />
+
+          <div>
+            {selectedBlog ? (
+              <div>
+                <h2>{selectedBlog.title}</h2>
+                <p>{selectedBlog.content}</p>
+              </div>
+            ) : (
+              <p>Select a blog to read</p>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
-<script type="text/babel">
-
-
-
-    function App(){
-        return (
-            <>
-    
-            </>
-        )
-    }
-    
-        let root=ReactDOM.createRoot(document.getElementById("root"))
-        root.render(<App/>)
-    </script>
