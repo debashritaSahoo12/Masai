@@ -1,44 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script
-    crossorigin
-    src="https://unpkg.com/react@18/umd/react.development.js"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-  ></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout</title>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body>
-    <div id="root"></div>
+  <div id="root">Hello From DOM</div>
 </body>
 </html>
 <script type="text/babel">
-
-function Card({heading,content,price,button}){
-return (
-    <div>
-        <h2>{heading}</h2>
-        <p>{content}</p>
-        <h1>{price}</h1>
-        <p>{button}</p>
-        </div>
-)
-}
-
-function App(){
+  function Header() {
     return (
-        <>
-
-        </>
+      <div style={{
+        textAlign: "center",
+        marginBottom: "40px",
+      }} >
+        <h1 style={{
+          fontSize: "32px",
+          fontWeight: "900",
+        }}>The Right Plan for <span style={{ color: "mediumpurple" }}>Your Business</span></h1>
+        <p style={{
+          color: "#555",
+          fontSize: "16px",
+          maxWidth: "600px",
+          margin: "10px auto"
+        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quod in iure vero. Facilis magnam, sed officiis commodi labore odit.</p>
+      </div>
     )
-}
-
-    let root=ReactDOM.createRoot(document.getElementById("root"))
-    root.render(<App/>)
+  }
+  function FeatureItem({ text }) {
+    return (
+      <div>
+        <p style={{
+          textAlign: "left", margin: "5px 0", fontSize: "14px"
+        }}> ✅ {text}</p>
+      </div>
+    )
+  }
+  function Price({ amount }) {
+    return (
+      <div style={{
+        fontSize: "24px",
+        fontWeight: "bold",
+        margin: "10px 0"
+      }}>{amount}
+      </div>
+    )
+  }
+  function GetstartedBtn() {
+    return (
+      <div>
+        <button style={{
+          backgroundColor: "#cbd5e0",
+          color: "#6c49c1",
+          border: "none",
+          padding: "10px 20px",
+          borderRadius: "5px",
+          cursor: "pointer",
+          marginTop: "10px",
+          fontFamily: "math",
+          fontWeight: "700"
+        }}>Get Started
+        </button>
+      </div>
+    )
+  }
+  function PlanCard({ title, price, features }) {
+    return (
+      <div style={{
+        border: "1px solid blue",
+        backgroundColor: "#09096b",
+        color: "white",
+        borderRadius: "8px",
+        padding: "20px",
+        margin: "10px",
+        width: "250px",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        textAlign: "center"
+      }}>
+        <h2 style={{
+          color: "white"
+        }}>{title}</h2>
+        <div style={{
+          margin: "15px 0"
+        }}>
+          {features.map((item, index) => (
+            <FeatureItem key={index} text={item} />
+          ))}
+        </div>
+        <Price amount={price} />
+        <GetstartedBtn />
+      </div>
+    )
+  }
+  function App() {
+    return (
+      <div style={{
+        padding: "40px",
+        fontFamily: "math"
+      }}>
+        <Header />
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap"
+        }}>
+          <PlanCard
+            title="Starter"
+            price="Free"
+            features={["Monthly Updates", "Basic Support", "Single User"]}
+          />
+          <PlanCard
+            title="Lorem Plus"
+            price="$32"
+            features={["Advanced Reports", "Priority Support", "Multiple Users"]}
+          />
+          <PlanCard
+            title="Lorem Pro"
+            price="$56"
+            features={["Unlimited Access", "24/7 Support", "Team Collaboration"]}
+          />
+        </div>
+      </div>
+    );
+  }
+  let root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App />)
 </script>
